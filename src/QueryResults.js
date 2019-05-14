@@ -1,10 +1,15 @@
 import React from 'react';
+import axios from 'axios';
+import { backendUrl } from './GlobalVariables';
 
 class QueryResults extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            status: 1,
+            status: '',
+            runtime: 0,
+            isComplete: false,
+            downloadUrl: '',
         }
         this.handleStatusUpdate = this.handleStatusUpdate.bind(this);
     }
@@ -16,16 +21,44 @@ class QueryResults extends React.Component {
     }
     handleStatusUpdate() {
         if(this.props.queryExecutionId === '') return (null);
-        var st = this.state.status;
-        this.setState({status: st+1});
+
+        const request = axios({
+            method: 'GET',
+            url: `${backendUrl}query-status/?query_id=${this.props.queryExecutionId}`,
+        });
+        request.then(
+            response => {
+                if(response.data.state === 'SUCCEEDED') {
+                    clearInterval(this.interval);
+                    this.setState({
+                        status: response.data.state,
+                        //runtime: response.data.runtime,
+                        isComplete: true,
+                        downloadUrl: response.data.downloadUrl
+                    });
+                } else {
+                    this.setState({
+                        status: response.data.state,
+                        //runtime: response.data.runtime
+                    });
+                }
+            },
+        );
     }
     render() {
         if(this.props.queryExecutionId === '') return (null);
+        let downloadLink;
+        if(this.state.isComplete) {
+            downloadLink = <a href={this.state.downloadUrl}> Download Results </a> ;
+        } else {
+            downloadLink = '';
+        }
         return(
             <div>
                 <h1>Query Results</h1>
-                <h1>{this.props.queryExecutionId}</h1>
                 <h1>{this.state.status}</h1>
+                <h1>{this.state.runtime}</h1>
+                {downloadLink}
             </div>
         );
     }

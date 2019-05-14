@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { backendUrl } from './GlobalVariables';
 import './UploadFile.css';
@@ -7,7 +8,7 @@ class UploadFile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            status: '',
+            redirectToQueryPage: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -31,7 +32,7 @@ class UploadFile extends React.Component {
         request.then(
             response => {
                 this.setState({
-                    status: 'Uploaded File',
+                    redirectToQueryPage: true,
                 });
             },
         );
@@ -40,6 +41,9 @@ class UploadFile extends React.Component {
         this.setState({tableName: event.target.value});
     }
     render() {
+        if (this.state.redirectToQueryPage) {
+            return <Redirect to='/query'/>;
+        }
         return(
             <div className="upload-container">
                 <form className="form-upload" onSubmit={this.handleSubmit}>
@@ -64,7 +68,6 @@ class UploadFile extends React.Component {
                         Create Table
                     </button>
                 </form>
-                <h2>{this.state.status}</h2>
             </div>
         );
     }

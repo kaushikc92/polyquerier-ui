@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import UploadFile from './UploadFile';
 import Query from './Query';
 import App from './App';

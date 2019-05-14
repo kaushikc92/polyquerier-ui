@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polyquerier-ui
+spec:
+  selector:
+    matchLabels:
+      name: polyquerier-ui
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: polyquerier-ui
+    spec:
+      containers:
+        - name: polyquerier-ui
+          image: "docker.io/kaushikc92/polyquerier-ui:latest"

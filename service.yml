@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: polyquerier-ui
+spec:
+  selector:
+    name: polyquerier-ui
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

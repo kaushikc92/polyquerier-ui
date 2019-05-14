@@ -49,15 +49,13 @@ class QueryResults extends React.Component {
         if(this.props.queryExecutionId === '') return (null);
         let downloadLink;
         if(this.state.isComplete) {
-            downloadLink = <a href={this.state.downloadUrl}> Download Results </a> ;
+            downloadLink = <a className="btn btn-primary btn-lg btn-block" href={this.state.downloadUrl}> Download Results </a> ;
         } else {
             downloadLink = '';
         }
         return(
             <div>
-                <h1>Query Results</h1>
-                <h1>{this.state.status}</h1>
-                <h1>{this.state.runtime}</h1>
+                <h1 className="h5 mb-3 font-weight-normal">Query Status: {this.state.status}</h1>
                 {downloadLink}
             </div>
         );

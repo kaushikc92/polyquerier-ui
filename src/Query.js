@@ -44,6 +44,7 @@ class Query extends React.Component {
                         Run Query
                     </button>
                 </form>
+                <br />
                 <QueryResults queryExecutionId={this.state.queryExecutionId} />
             </div>
         );

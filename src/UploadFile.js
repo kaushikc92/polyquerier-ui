@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { backendUrl } from './GlobalVariables';
+import './UploadFile.css';
 
 class UploadFile extends React.Component {
     constructor(props) {
@@ -40,22 +41,28 @@ class UploadFile extends React.Component {
     }
     render() {
         return(
-            <div>
-                <h1>Upload File Component</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Enter Table Name" value={this.state.tableName} onChange={this.handleChange} />
+            <div className="upload-container">
+                <form className="form-upload" onSubmit={this.handleSubmit}>
+                    <h1 className="h3 mb-3 font-weight-normal">Upload a Table</h1>
+                    <input type="text" className="form-control" placeholder="Enter Table Name" 
+                        value={this.state.tableName} onChange={this.handleChange} required autofocus>
+                    </input>
                     <br />
-                    <label>
-                        Upload Files:
-                        <input type="file" ref={this.fileInput} multiple />
-                    </label>
+                    <div class="form-group">
+                        <label for="data-files-input-id">Upload Data Files:</label>
+                        <input type="file" className="form-control-file" id="data-files-input-id"
+                        ref={this.fileInput} multiple />
+                    </div>
                     <br />
-                    <label>
-                        Upload Schema File:
-                        <input type="file" ref={this.schemaFileInput} />
-                    </label>
+                    <div class="form-group">
+                        <label for="schema-file-input-id">Upload Schema File:</label>
+                        <input type="file" className="form-control-file" id="schema-file-input-id"
+                        ref={this.schemaFileInput} />
+                    </div>
                     <br />
-                    <button type="submit">Submit</button>
+                    <button className="btn btn-lg btn-primary btn-block" type="submit">
+                        Create Table
+                    </button>
                 </form>
                 <h2>{this.state.status}</h2>
             </div>

@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import './App.css';
 
 class App extends React.Component {
     render() {
         return(
-            <div>
-                <h1>Polyquerier</h1>
-                <Link to="/upload/">Upload File</Link>
-                <Link to="/query/">Query</Link>
+            <div className="pq-container" >
+                <h1 className="h3 mb-3 font-weight-normal">Welcome to Polyquerier</h1>
+                <Link className="btn btn-primary btn-lg btn-block" to="/upload/">Upload a Table</Link>
+                <Link className="btn btn-primary btn-lg btn-block" to="/query/">Query the Database</Link>
             </div>
         );
     }

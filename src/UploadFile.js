@@ -9,6 +9,7 @@ class UploadFile extends React.Component {
         super(props);
         this.state = {
             redirectToQueryPage: false,
+            isLoading: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -24,6 +25,9 @@ class UploadFile extends React.Component {
         }
         data.append('schema_file', this.schemaFileInput.current.files[0]);
         data.append('table_name', this.state.tableName);
+        this.setState({
+            isLoading: true,
+        });
         const request = axios({
             method: 'POST',
             url: `${backendUrl}upload/`,
@@ -43,6 +47,12 @@ class UploadFile extends React.Component {
     render() {
         if (this.state.redirectToQueryPage) {
             return <Redirect to='/query'/>;
+        }
+        let createButton;
+        if(this.state.isLoading) {
+            createButton = <button className="btn btn-lg btn-primary btn-block" type="submit" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></button>;
+        } else {
+            createButton = <button className="btn btn-lg btn-primary btn-block" type="submit">Create Table</button>;
         }
         return(
             <div className="upload-container">
@@ -64,9 +74,7 @@ class UploadFile extends React.Component {
                         ref={this.schemaFileInput} />
                     </div>
                     <br />
-                    <button className="btn btn-lg btn-primary btn-block" type="submit">
-                        Create Table
-                    </button>
+                    {createButton}
                 </form>
             </div>
         );

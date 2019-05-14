@@ -18,6 +18,7 @@ class Query extends React.Component {
         event.preventDefault();
         const data = new FormData();
         data.append('query', this.state.query);
+        this.setState({queryExecutionId: ''});
         const request = axios({
             method: 'POST',
             url: `${backendUrl}run-query/`,
@@ -33,6 +34,12 @@ class Query extends React.Component {
         this.setState({query: event.target.value});
     }
     render() {
+        let queryResults;
+        if (this.state.queryExecutionId === '') {
+            queryResults = ''
+        } else {
+            queryResults = <QueryResults queryExecutionId={this.state.queryExecutionId} /> ;
+        }
         return(
             <div className="query-container">
                 <form className="form-query" onSubmit={this.handleSubmit} >
@@ -45,7 +52,7 @@ class Query extends React.Component {
                     </button>
                 </form>
                 <br />
-                <QueryResults queryExecutionId={this.state.queryExecutionId} />
+                {queryResults}
             </div>
         );
     }

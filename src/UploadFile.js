@@ -45,17 +45,17 @@ class UploadFile extends React.Component {
                 <form className="form-upload" onSubmit={this.handleSubmit}>
                     <h1 className="h3 mb-3 font-weight-normal">Upload a Table</h1>
                     <input type="text" className="form-control" placeholder="Enter Table Name" 
-                        value={this.state.tableName} onChange={this.handleChange} required autofocus>
+                        value={this.state.tableName} onChange={this.handleChange} required autoFocus>
                     </input>
                     <br />
-                    <div class="form-group">
-                        <label for="data-files-input-id">Upload Data Files:</label>
+                    <div className="form-group">
+                        <label htmlFor="data-files-input-id">Upload Data Files:</label>
                         <input type="file" className="form-control-file" id="data-files-input-id"
                         ref={this.fileInput} multiple />
                     </div>
                     <br />
-                    <div class="form-group">
-                        <label for="schema-file-input-id">Upload Schema File:</label>
+                    <div className="form-group">
+                        <label htmlFor="schema-file-input-id">Upload Schema File:</label>
                         <input type="file" className="form-control-file" id="schema-file-input-id"
                         ref={this.schemaFileInput} />
                     </div>

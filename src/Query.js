@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { backendUrl } from './GlobalVariables';
 import QueryResults from './QueryResults';
+import './Query.css';
 
 class Query extends React.Component {
     constructor(props) {
@@ -33,11 +34,15 @@ class Query extends React.Component {
     }
     render() {
         return(
-            <div>
-                <h1>Query Component</h1>
-                <form onSubmit={this.handleSubmit} >
-                    <input type="text" placeholder="Enter SQL Query" value={this.state.query} onChange={this.handleChange} />
-                    <button type="submit">Submit</button>
+            <div className="query-container">
+                <form className="form-query" onSubmit={this.handleSubmit} >
+                    <h1 className="h3 mb-3 font-weight-normal">Query the Database</h1>
+                    <input type="text" className="form-control" placeholder="Enter SQL Query" 
+                    value={this.state.query} onChange={this.handleChange} required autoFocus />
+                    <br />
+                    <button className="btn btn-lg btn-primary btn-block" type="submit">
+                        Run Query
+                    </button>
                 </form>
                 <QueryResults queryExecutionId={this.state.queryExecutionId} />
             </div>

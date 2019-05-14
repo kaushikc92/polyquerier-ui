@@ -39,7 +39,7 @@ class QueryResults extends React.Component {
                 } else {
                     this.setState({
                         status: response.data.state,
-                        runtime: response.data.runtime
+                        runtime: typeof response.data.runtime === "undefined" ? 0 : response.data.runtime
                     });
                 }
             },

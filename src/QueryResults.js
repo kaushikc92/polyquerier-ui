@@ -32,14 +32,14 @@ class QueryResults extends React.Component {
                     clearInterval(this.interval);
                     this.setState({
                         status: response.data.state,
-                        //runtime: response.data.runtime,
+                        runtime: response.data.runtime,
                         isComplete: true,
                         downloadUrl: response.data.downloadUrl
                     });
                 } else {
                     this.setState({
                         status: response.data.state,
-                        //runtime: response.data.runtime
+                        runtime: response.data.runtime
                     });
                 }
             },
@@ -53,9 +53,11 @@ class QueryResults extends React.Component {
         } else {
             downloadLink = '';
         }
+        //let runtimeStat;
         return(
             <div>
                 <h1 className="h5 mb-3 font-weight-normal">Query Status: {this.state.status}</h1>
+                <h1 className="h5 mb-3 font-weight-normal">Elapsed Time: {this.state.runtime/1000 }s</h1>
                 {downloadLink}
             </div>
         );

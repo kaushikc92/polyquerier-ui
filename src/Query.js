@@ -44,8 +44,9 @@ class Query extends React.Component {
             <div className="query-container">
                 <form className="form-query" onSubmit={this.handleSubmit} >
                     <h1 className="h3 mb-3 font-weight-normal">Query the Database</h1>
-                    <input type="text" className="form-control" placeholder="Enter SQL Query" 
-                    value={this.state.query} onChange={this.handleChange} required autoFocus />
+                    <textarea rows="10" className="form-control" placeholder="Enter SQL Query" 
+                    value={this.state.query} onChange={this.handleChange} required autoFocus > 
+                    </textarea>
                     <br />
                     <button className="btn btn-lg btn-primary btn-block" type="submit">
                         Run Query
